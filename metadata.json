@@ -1,0 +1,8 @@
+{
+  "name": "MuslimremixtemplateforJabairAli",
+  "description": "Muslim wedding template for Jabair Ali - Wedding Invitation",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
