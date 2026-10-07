@@ -96,23 +96,23 @@ export function Hero({ data, shouldPlayVideo = true, onVideoEnd }: HeroProps) {
             transition={{ duration: 1.5, delay: 0.5 }}
             className="flex flex-col items-center justify-center w-full"
           >
-            <h1 className="font-serif text-4xl sm:text-5xl font-bold tracking-wide text-wine-dark drop-shadow-[0_1px_10px_rgba(255,255,255,0.95)] leading-tight text-center">
+            <h1 className="font-names text-4xl sm:text-5xl font-extrabold tracking-wide text-[#5A0C1E] drop-shadow-[0_2px_12px_rgba(255,255,255,0.95)] leading-tight text-center">
               {data.groom.name}
             </h1>
-            <div className="font-serif text-[12px] text-wine-dark/90 flex flex-col items-center gap-1 mt-2 mb-5 font-medium drop-shadow-[0_1px_6px_rgba(255,255,255,0.9)]">
+            <div className="font-serif text-[13px] text-[#2A161C] flex flex-col items-center gap-1 mt-2.5 mb-5 font-semibold drop-shadow-[0_1px_6px_rgba(255,255,255,0.9)]">
               <p>{data.groom.parents}</p>
-              <p>{data.groom.education}</p>
+              <p className="font-bold text-[#78132B]">{data.groom.education}</p>
               {data.groom.profession && <p>{data.groom.profession}</p>}
             </div>
             
-            <span className="font-serif italic text-2xl sm:text-3xl text-pink-accent drop-shadow-[0_1px_6px_rgba(255,255,255,0.9)] my-1">&amp;</span>
+            <span className="font-names italic text-2xl sm:text-3xl text-[#78132B] font-bold drop-shadow-[0_1px_6px_rgba(255,255,255,0.9)] my-1">&amp;</span>
             
-            <h1 className="font-serif text-4xl sm:text-5xl font-bold tracking-wide text-wine-dark drop-shadow-[0_1px_10px_rgba(255,255,255,0.95)] leading-tight mt-1 text-center">
+            <h1 className="font-names text-4xl sm:text-5xl font-extrabold tracking-wide text-[#5A0C1E] drop-shadow-[0_2px_12px_rgba(255,255,255,0.95)] leading-tight mt-1 text-center">
               {data.bride.name}
             </h1>
-            <div className="font-serif text-[12px] text-wine-dark/90 flex flex-col items-center gap-1 mt-2 font-medium drop-shadow-[0_1px_6px_rgba(255,255,255,0.9)]">
+            <div className="font-serif text-[13px] text-[#2A161C] flex flex-col items-center gap-1 mt-2.5 font-semibold drop-shadow-[0_1px_6px_rgba(255,255,255,0.9)]">
               <p>{data.bride.parents}</p>
-              <p>{data.bride.education}</p>
+              <p className="font-bold text-[#78132B]">{data.bride.education}</p>
               {data.bride.profession && <p>{data.bride.profession}</p>}
             </div>
           </motion.div>

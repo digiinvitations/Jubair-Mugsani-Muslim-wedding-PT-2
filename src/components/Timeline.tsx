@@ -143,45 +143,49 @@ export function Timeline({ events }: TimelineProps) {
                 
                 {/* Given Small Box */}
                 <div className={`w-[48%] md:w-[45%] ${isEven ? 'pr-3 sm:pr-8 text-right' : 'pl-3 sm:pl-8 text-left'} relative z-0`}>
-                  <div className="bg-white/70 backdrop-blur-sm p-3.5 sm:p-4 rounded-xl md:rounded-2xl border border-pink-border/60 shadow-sm hover:shadow-md transition-shadow relative">
+                  <div className="bg-white/95 backdrop-blur-md p-3.5 sm:p-4 rounded-xl md:rounded-2xl border border-[#E8C7CD] shadow-sm hover:shadow-md transition-shadow relative">
                     
                     {/* Event Title */}
-                    <h3 className="font-script text-2xl sm:text-3xl text-burgundy mb-2.5 leading-tight">
+                    <h3 className="font-names font-bold text-base sm:text-lg text-[#5A0C1E] mb-2.5 leading-snug tracking-wide">
                       {item.title}
                     </h3>
                     
                     {/* Systematic Details: Date, Time, Venue */}
-                    <div className={`flex flex-col gap-1.5 font-serif text-[11px] sm:text-xs text-wine-dark/90 ${isEven ? 'items-end' : 'items-start'}`}>
+                    <div className={`flex flex-col gap-2.5 font-serif text-xs ${isEven ? 'items-end' : 'items-start'}`}>
                       
-                      {/* Systematic Date */}
-                      <div className={`flex items-center gap-1.5 font-medium ${isEven ? 'flex-row-reverse text-right' : 'flex-row text-left'}`}>
-                        <Calendar className="w-3.5 h-3.5 text-pink-accent shrink-0" />
-                        <span className="font-semibold tracking-wide">
+                      {/* Systematic Date (Bold and properly visible) */}
+                      <div className={`flex items-center gap-1.5 ${isEven ? 'flex-row-reverse text-right' : 'flex-row text-left'}`}>
+                        <Calendar className="w-4 h-4 text-[#8F1736] shrink-0" />
+                        <span className="font-extrabold text-[12.5px] sm:text-[13.5px] tracking-wide text-[#5A0C1E] bg-[#FCEBED] px-2.5 py-1 rounded-md border border-[#D995A5] shadow-xs inline-block">
                           {dateDisplay} {weekday && `(${weekday})`}
                         </span>
                       </div>
 
-                      {/* Systematic Time */}
-                      <div className={`flex items-center gap-1.5 font-medium ${isEven ? 'flex-row-reverse text-right' : 'flex-row text-left'}`}>
-                        <Clock className="w-3.5 h-3.5 text-pink-accent shrink-0" />
-                        <span>{item.time}</span>
+                      {/* Systematic Time (Bold and visible) */}
+                      <div className={`flex items-center gap-1.5 ${isEven ? 'flex-row-reverse text-right' : 'flex-row text-left'}`}>
+                        <Clock className="w-3.5 h-3.5 text-[#8F1736] shrink-0" />
+                        <span className="font-bold text-xs sm:text-[13px] text-[#2A161C] tracking-wide bg-[#FAF0F3] px-2 py-0.5 rounded-md border border-[#E8C7CD]">
+                          {item.time}
+                        </span>
                       </div>
 
-                      {/* Systematic Venue */}
-                      <div className={`flex items-start gap-1.5 font-medium ${isEven ? 'flex-row-reverse text-right' : 'flex-row text-left'}`}>
-                        <MapPin className="w-3.5 h-3.5 text-pink-accent shrink-0 mt-0.5" />
-                        <span className="break-words leading-tight">{item.location}</span>
+                      {/* Systematic Venue (Bold and visible) */}
+                      <div className={`flex items-start gap-1.5 ${isEven ? 'flex-row-reverse text-right' : 'flex-row text-left'}`}>
+                        <MapPin className="w-3.5 h-3.5 text-[#8F1736] shrink-0 mt-0.5" />
+                        <span className="font-bold text-xs sm:text-[12.5px] text-[#2A161C] break-words leading-tight bg-[#FAF0F3] px-2 py-0.5 rounded-md border border-[#E8C7CD]">
+                          {item.location}
+                        </span>
                       </div>
 
                     </div>
 
                     {/* Description note if present */}
                     {item.description && (
-                      <div className="w-full h-px bg-pink-border/35 my-2" />
+                      <div className="w-full h-px bg-pink-border/50 my-2" />
                     )}
 
                     {item.description && (
-                      <p className={`text-[10px] sm:text-xs text-wine-dark/80 leading-relaxed font-serif italic ${isEven ? 'text-right' : 'text-left'}`}>
+                      <p className={`text-[11px] sm:text-xs text-[#5A0C1E] font-semibold leading-relaxed font-serif italic ${isEven ? 'text-right' : 'text-left'}`}>
                         "{item.description}"
                       </p>
                     )}

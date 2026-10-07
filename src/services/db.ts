@@ -71,49 +71,11 @@ export async function getWeddingData(): Promise<WeddingData> {
 
     if (docSnap.exists()) {
       const existing = docSnap.data() as WeddingData;
-      // Ensure the slot contains the specific wedding details for A.Jubair Ali & M.Mugsina Safreen
-      if (
-        existing.templateName === TEMPLATE_FIELD_NAME &&
-        existing.groom?.name === "A.Jubair Ali" &&
-        existing.bride?.name === "M.Mugsina Safreen" &&
-        existing.weddingDate === "2026-11-15T11:30" &&
-        existing.familyDetails
-      ) {
-        return {
-          ...defaultData,
-          ...existing,
-          logoSize: existing.logoSize ?? defaultData.logoSize ?? 240
-        };
-      }
-
-      // If document is incomplete or from previous template, update with new wedding data
-      const merged: WeddingData = {
+      return {
         ...defaultData,
         ...existing,
-        groom: defaultData.groom,
-        bride: defaultData.bride,
-        weddingDate: defaultData.weddingDate,
-        weddingDateFormatted: defaultData.weddingDateFormatted,
-        weddingTimeFormatted: defaultData.weddingTimeFormatted,
-        weddingDayFormatted: defaultData.weddingDayFormatted,
-        venue: defaultData.venue,
-        heroMessage: defaultData.heroMessage,
-        invitationMessage: defaultData.invitationMessage,
-        customText: defaultData.customText,
-        jmLogoUrl: existing.jmLogoUrl || defaultData.jmLogoUrl || "",
-        logoSize: existing.logoSize || defaultData.logoSize || 240,
-        quranicVerse: defaultData.quranicVerse,
-        familyDetails: defaultData.familyDetails,
-        events: defaultData.events,
-        timeline: defaultData.timeline,
-        closingMessage: defaultData.closingMessage,
-        templateName: TEMPLATE_FIELD_NAME,
-        remixSlotId: slotId,
-        isRemix: true,
-        lastUpdated: new Date().toISOString()
+        logoSize: existing.logoSize ?? defaultData.logoSize ?? 240
       };
-      await setDoc(docRef, merged);
-      return merged;
     } else {
       // Initialize new dedicated slot for MuslimremixtemplateforJabairAli
       const initialData: WeddingData = {

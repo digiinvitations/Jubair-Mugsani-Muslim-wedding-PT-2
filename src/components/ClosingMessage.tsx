@@ -30,8 +30,8 @@ export function ClosingMessage({ data }: ClosingMessageProps) {
           {data.closingMessage}
         </p>
         
-        <h3 className="font-script text-4xl md:text-5xl text-[#9E263D] mt-4 tracking-wide">
-          {data.groom.name} &amp; {data.bride.name}
+        <h3 className="font-names text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#5A0C1E] mt-4 tracking-wide drop-shadow-sm">
+          {data.groom.name} <span className="text-[#8F1736] font-normal italic">&amp;</span> {data.bride.name}
         </h3>
       </motion.div>
 

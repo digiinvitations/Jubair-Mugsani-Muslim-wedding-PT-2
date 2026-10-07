@@ -179,14 +179,14 @@ export function ScratchCardSection({ data, onReveal }: ScratchCardProps) {
           {/* Revealed Content (underneath) */}
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 bg-[#F4DDE2]">
             <div className="flex flex-col items-center justify-center mt-4">
-              <p className="font-script text-[1.75rem] text-[#A92543] mb-3">You're Invited!</p>
-              <p className="font-serif font-bold text-xl text-[#A92543] tracking-wide">
+              <p className="font-script text-[1.85rem] text-[#8F1736] mb-2 font-bold">You're Invited!</p>
+              <p className="font-names font-bold text-2xl text-[#5A0C1E] tracking-wide drop-shadow-2xs">
                 {data.weddingDateFormatted}
               </p>
-              <p className="font-serif text-[0.95rem] text-[#A92543] mt-2 opacity-95">
+              <p className="font-serif font-bold text-base text-[#78132B] mt-1.5 opacity-95">
                 {data.weddingDayFormatted}
               </p>
-              <p className="font-serif text-xs text-[#A92543] mt-3 opacity-80">
+              <p className="font-serif font-extrabold text-sm text-[#5A0C1E] mt-2 bg-white/60 px-3 py-1 rounded-full border border-pink-border/80">
                 {data.weddingTimeFormatted}
               </p>
             </div>

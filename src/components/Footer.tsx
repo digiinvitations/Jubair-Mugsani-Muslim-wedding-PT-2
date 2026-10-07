@@ -9,8 +9,8 @@ interface FooterProps {
 export function Footer({ data }: FooterProps) {
   return (
     <footer className="py-12 bg-blush-light border-t border-pink-border flex flex-col items-center text-center px-4 relative">
-      <h4 className="font-script text-2xl text-wine-dark mb-3">
-        {data.groom.name} &amp; {data.bride.name}
+      <h4 className="font-names text-xl sm:text-2xl font-bold text-[#5A0C1E] mb-3 tracking-wide drop-shadow-2xs">
+        {data.groom.name} <span className="text-[#8F1736] font-normal italic">&amp;</span> {data.bride.name}
       </h4>
       
       <div className="flex items-center gap-2 opacity-60 mb-8">

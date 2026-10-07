@@ -20,11 +20,11 @@ export const weddingData: WeddingData = {
   openingThumbnailUrl: "https://i.ibb.co/QFc6pvCg/file-0000000069488211b334f24889ba09e4.png",
   openingVideoUrl: "https://www.image2url.com/r2/default/videos/1788010850590-27bb3d4c-eb70-4e57-8299-6bca19925158.mp4",
   heroVideoUrl: "https://www.image2url.com/r2/default/videos/1788011182513-3d74480d-c3ef-41df-926f-d21988765de3.mp4",
-  ogImageUrl: "https://i.ibb.co/whJhPT35/file-000000001e048211bb05770afd02bdae.png",
+  ogImageUrl: "https://cdn.phototourl.com/member/2026-10-07-2c62fe58-183a-40f2-abbd-442607136eeb.png",
   heroMessage: "In the name of Allah, Most Gracious, Most Merciful\nWe cordially invite you to celebrate the\nNikah ceremony of",
   customText: "(JM)",
-  jmLogoUrl: "https://www.image2url.com/r2/default/images/1791369393642-3b15e8d5-7db6-44ce-a573-b5e162e4881b.png",
-  logoSize: 240,
+  jmLogoUrl: "https://cdn.phototourl.com/member/2026-10-07-4903dbb7-4f73-4b15-b4ee-ee92614d45a9.png",
+  logoSize: 450,
   quranicVerse: {
     arabic: "وَخَلَقْنَـٰكُمْ\nأَزْوَٰجًۭا",
     translation: "And We created you in pairs"
@@ -62,8 +62,8 @@ export const weddingData: WeddingData = {
       date: "2026-11-12",
       time: "12:00 PM onwards",
       location: "At Bride Villa",
-      videoUrl: "https://www.image2url.com/r2/default/videos/1788110629349-5c2d80d0-da2d-4a86-9f6c-9ee32b0aad1e.mp4",
-      mapUrl: "https://maps.app.goo.gl/2jcrNgRBA8j3s5fo8?g_st=ac"
+      videoUrl: "https://videotourl.com/videos/1791371641003-4faa3b6f-ee91-4ddf-85e2-1a66679b1b6e.mp4",
+      mapUrl: ""
     },
     {
       id: "ev2",
@@ -71,8 +71,8 @@ export const weddingData: WeddingData = {
       date: "2026-11-14",
       time: "6:30 PM onwards",
       location: "At Bride and Groom Villa",
-      videoUrl: "https://www.image2url.com/r2/default/videos/1788110638012-da72db7f-13ba-442b-9a43-7fe583bdb28c.mp4",
-      mapUrl: "https://maps.app.goo.gl/2jcrNgRBA8j3s5fo8?g_st=ac"
+      videoUrl: "https://videotourl.com/videos/1791371326390-f7acc5f9-8355-4245-839a-702298345c4e.mp4",
+      mapUrl: ""
     },
     {
       id: "ev3",
@@ -80,8 +80,8 @@ export const weddingData: WeddingData = {
       date: "2026-11-15",
       time: "11:30 AM",
       location: "At sangamithirai Mahal",
-      videoUrl: "https://www.image2url.com/r2/default/videos/1788110729435-449d9665-1970-450a-a6e6-7afc70798877.mp4",
-      mapUrl: "https://maps.app.goo.gl/2jcrNgRBA8j3s5fo8?g_st=ac"
+      videoUrl: "https://videotourl.com/videos/1791371738526-a1fdfff2-fa77-4f70-bc2c-22dfe53492e1.mp4",
+      mapUrl: ""
     }
   ],
   timeline: [
@@ -109,9 +109,9 @@ export const weddingData: WeddingData = {
   ],
   venue: {
     name: "Sangamithirai Mahal",
-    addressLine1: "Sangamithirai Mahal",
+    addressLine1: "Tamil nadu ",
     addressLine2: "",
-    mapUrl: "https://maps.google.com/?q=Sangamithirai+Mahal"
+    mapUrl: "https://maps.app.goo.gl/5PMTJDV85ZLAe9xr8?g_st=ac"
   },
   transportation: "Transportation service will be available\nfrom the designated pickup center to the venue.\nPickup point: Central Station",
   dressCode: "Formal & Modest Elegant",
@@ -120,7 +120,7 @@ export const weddingData: WeddingData = {
     "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=2070&auto=format&fit=crop"
   ],
-  musicUrl: "https://www.image2url.com/r2/default/audio/1788064469832-bf9b7150-96e8-40a9-aa58-a25cddf491c7.mp3",
+  musicUrl: "https://mp3tourl.com/audio/1791370791482-f9f5831b-9b3e-438b-b5b0-1fa33350828f.mp3",
   closingMessage: "May Allah bless our union.\nWe look forward to celebrating\nthis blessed journey with you!\nPlease keep us in your prayers.",
   templateName: "MuslimremixtemplateforJabairAli"
 };

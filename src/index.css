@@ -13,6 +13,7 @@
   --font-script: "Great Vibes", cursive;
   --font-serif: "Cormorant Garamond", serif;
   --font-display: "Cinzel", "Playfair Display", "Cormorant Garamond", serif;
+  --font-names: "Playfair Display", "Cinzel", Georgia, serif;
 }
 
 body {

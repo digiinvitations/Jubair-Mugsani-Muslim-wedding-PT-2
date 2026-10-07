@@ -77,9 +77,16 @@ function EventPopup({ event, onClose }: { event: EventDetails; onClose: () => vo
         {/* Heading above video */}
         <div className="mb-4 text-center text-wine-dark w-full drop-shadow-sm flex flex-col items-center">
           <h3 className="font-script text-4xl mb-1 text-burgundy font-bold">{event.title}</h3>
-          <p className="font-serif text-sm tracking-widest text-wine-dark/80 font-bold mb-1">{event.date} • {event.time}</p>
+          <div className="inline-flex items-center gap-1.5 bg-[#FCEBED] border border-[#D995A5] px-3 py-1 rounded-full shadow-2xs my-1">
+            <Calendar className="w-3.5 h-3.5 text-[#8F1736]" />
+            <span className="font-serif font-extrabold text-xs sm:text-[13px] text-[#5A0C1E] tracking-wider">
+              {event.date} • {event.time}
+            </span>
+          </div>
           {event.location && (
-            <p className="font-serif text-xs text-wine-dark/75 tracking-wider font-medium">{event.location}</p>
+            <p className="font-serif text-xs text-[#2A161C] tracking-wide font-bold mt-1 bg-white/70 px-2.5 py-0.5 rounded border border-[#E8C7CD]">
+              {event.location}
+            </p>
           )}
         </div>
 
@@ -169,6 +176,18 @@ function EventItem({ event }: { event: EventDetails }) {
         />
       </motion.button>
       
+      {/* Pre-warm video buffer so it opens instantly without lag */}
+      {event.videoUrl && (
+        <video 
+          src={event.videoUrl} 
+          preload="auto" 
+          muted 
+          playsInline 
+          className="hidden" 
+          aria-hidden="true" 
+        />
+      )}
+
       <AnimatePresence>
         {showPopup && <EventPopup event={event} onClose={() => setShowPopup(false)} />}
       </AnimatePresence>

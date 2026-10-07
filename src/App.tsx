@@ -47,6 +47,12 @@ function PublicView() {
     loadData();
   }, []);
 
+  useEffect(() => {
+    if (openingVideoRef.current && data?.openingVideoUrl) {
+      openingVideoRef.current.load();
+    }
+  }, [data?.openingVideoUrl]);
+
   const handleThumbnailClick = () => {
     if (viewState === 'opening-video') {
       // If user clicks again while video is buffering/stuck, skip to main
