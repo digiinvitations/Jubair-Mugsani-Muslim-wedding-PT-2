@@ -24,7 +24,11 @@ import {
   Music, 
   Video, 
   Database,
-  RefreshCw
+  RefreshCw,
+  Plus,
+  Trash2,
+  Users,
+  User
 } from "lucide-react";
 
 export function AdminPanel() {
@@ -92,10 +96,92 @@ export function AdminPanel() {
       const keys = path.split('.');
       let current = updated;
       for (let i = 0; i < keys.length - 1; i++) {
+        if (!current[keys[i]] || typeof current[keys[i]] !== 'object') {
+          current[keys[i]] = {};
+        } else {
+          current[keys[i]] = Array.isArray(current[keys[i]]) ? [...current[keys[i]]] : { ...current[keys[i]] };
+        }
         current = current[keys[i]];
       }
       current[keys[keys.length - 1]] = value;
       return updated;
+    });
+  };
+
+  const handleBrotherChange = (index: number, field: 'name' | 'wife' | 'child', value: string) => {
+    setData((prev: any) => {
+      const family = prev.familyDetails ? { ...prev.familyDetails } : { groomSide: {}, brideSide: {} };
+      const groomSide = family.groomSide ? { ...family.groomSide } : {};
+      const brothers = groomSide.brothers ? [...groomSide.brothers] : [];
+      if (!brothers[index]) {
+        brothers[index] = { name: "", wife: "", child: "" };
+      } else {
+        brothers[index] = { ...brothers[index] };
+      }
+      brothers[index][field] = value;
+      groomSide.brothers = brothers;
+      family.groomSide = groomSide;
+      return { ...prev, familyDetails: family };
+    });
+  };
+
+  const addBrother = () => {
+    setData((prev: any) => {
+      const family = prev.familyDetails ? { ...prev.familyDetails } : { groomSide: {}, brideSide: {} };
+      const groomSide = family.groomSide ? { ...family.groomSide } : {};
+      const brothers = groomSide.brothers ? [...groomSide.brothers] : [];
+      brothers.push({ name: "", wife: "", child: "" });
+      groomSide.brothers = brothers;
+      family.groomSide = groomSide;
+      return { ...prev, familyDetails: family };
+    });
+  };
+
+  const removeBrother = (index: number) => {
+    setData((prev: any) => {
+      const family = prev.familyDetails ? { ...prev.familyDetails } : { groomSide: {}, brideSide: {} };
+      const groomSide = family.groomSide ? { ...family.groomSide } : {};
+      const brothers = groomSide.brothers ? [...groomSide.brothers] : [];
+      brothers.splice(index, 1);
+      groomSide.brothers = brothers;
+      family.groomSide = groomSide;
+      return { ...prev, familyDetails: family };
+    });
+  };
+
+  const handleSisterChange = (index: number, value: string) => {
+    setData((prev: any) => {
+      const family = prev.familyDetails ? { ...prev.familyDetails } : { groomSide: {}, brideSide: {} };
+      const brideSide = family.brideSide ? { ...family.brideSide } : {};
+      const sisters = brideSide.sisters ? [...brideSide.sisters] : [];
+      sisters[index] = value;
+      brideSide.sisters = sisters;
+      family.brideSide = brideSide;
+      return { ...prev, familyDetails: family };
+    });
+  };
+
+  const addSister = () => {
+    setData((prev: any) => {
+      const family = prev.familyDetails ? { ...prev.familyDetails } : { groomSide: {}, brideSide: {} };
+      const brideSide = family.brideSide ? { ...family.brideSide } : {};
+      const sisters = brideSide.sisters ? [...brideSide.sisters] : [];
+      sisters.push("");
+      brideSide.sisters = sisters;
+      family.brideSide = brideSide;
+      return { ...prev, familyDetails: family };
+    });
+  };
+
+  const removeSister = (index: number) => {
+    setData((prev: any) => {
+      const family = prev.familyDetails ? { ...prev.familyDetails } : { groomSide: {}, brideSide: {} };
+      const brideSide = family.brideSide ? { ...family.brideSide } : {};
+      const sisters = brideSide.sisters ? [...brideSide.sisters] : [];
+      sisters.splice(index, 1);
+      brideSide.sisters = sisters;
+      family.brideSide = brideSide;
+      return { ...prev, familyDetails: family };
     });
   };
 
@@ -633,20 +719,207 @@ export function AdminPanel() {
             </div>
           </section>
 
-          {/* Family Details */}
+          {/* Family & Parents Details */}
           <section>
-            <h2 className="text-xl font-bold text-wine-dark mb-4">Family Details</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-4 bg-blush-light p-4 rounded-lg border border-pink-border/50">
-                <h3 className="font-bold">Groom's Family</h3>
-                <Input label="Father's Name" value={data.familyDetails?.groomSide.father || ""} onChange={(v) => handleChange("familyDetails.groomSide.father", v)} />
-                <Input label="Mother's Name" value={data.familyDetails?.groomSide.mother || ""} onChange={(v) => handleChange("familyDetails.groomSide.mother", v)} />
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+              <div>
+                <h2 className="text-xl font-bold text-wine-dark flex items-center gap-2">
+                  <Users className="w-5 h-5 text-burgundy" />
+                  Parents & Family Details Section
+                </h2>
+                <p className="text-xs text-wine-dark/70">
+                  Full control over parents' names, family blessings, brothers, and sisters displayed in the website's Family Details section.
+                </p>
               </div>
-              <div className="space-y-4 bg-blush-light p-4 rounded-lg border border-pink-border/50">
-                <h3 className="font-bold">Bride's Family</h3>
-                <Input label="Father's Name" value={data.familyDetails?.brideSide.father || ""} onChange={(v) => handleChange("familyDetails.brideSide.father", v)} />
-                <Input label="Mother's Name" value={data.familyDetails?.brideSide.mother || ""} onChange={(v) => handleChange("familyDetails.brideSide.mother", v)} />
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              
+              {/* GROOM'S SIDE */}
+              <div className="bg-blush-light p-5 rounded-xl border border-pink-border/70 shadow-2xs space-y-5">
+                <div className="flex items-center justify-between pb-3 border-b border-pink-border/60">
+                  <div className="flex items-center gap-2">
+                    <User className="w-4 h-4 text-wine-dark" />
+                    <h3 className="font-bold text-base text-wine-dark">Groom's Parents & Family</h3>
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider bg-white px-2 py-0.5 rounded text-burgundy border border-pink-border/50">
+                    Groom Side
+                  </span>
+                </div>
+
+                {/* Parents' Names */}
+                <div className="space-y-3 bg-white/80 p-3.5 rounded-lg border border-pink-border/50">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-burgundy flex items-center gap-1.5">
+                    Parents' Names (Family Section)
+                  </h4>
+                  <Input 
+                    label="Father's Name" 
+                    value={data.familyDetails?.groomSide.father || ""} 
+                    onChange={(v) => handleChange("familyDetails.groomSide.father", v)} 
+                  />
+                  <Input 
+                    label="Mother's Name" 
+                    value={data.familyDetails?.groomSide.mother || ""} 
+                    onChange={(v) => handleChange("familyDetails.groomSide.mother", v)} 
+                  />
+                  <div className="pt-1">
+                    <Input 
+                      label="Hero Parents Subtitle (Under Groom Name on Hero)" 
+                      value={data.groom.parents} 
+                      onChange={(v) => handleChange("groom.parents", v)} 
+                    />
+                  </div>
+                </div>
+
+                {/* Groom's Brothers & Family */}
+                <div className="space-y-3 bg-white/80 p-3.5 rounded-lg border border-pink-border/50">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-burgundy">
+                      Groom's Brothers & Family ({data.familyDetails?.groomSide.brothers?.length || 0})
+                    </h4>
+                    <button
+                      type="button"
+                      onClick={addBrother}
+                      className="flex items-center gap-1 px-2.5 py-1 bg-burgundy hover:bg-wine-dark text-white rounded text-xs font-bold transition-colors shadow-2xs cursor-pointer"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      Add Brother
+                    </button>
+                  </div>
+
+                  {(!data.familyDetails?.groomSide.brothers || data.familyDetails.groomSide.brothers.length === 0) ? (
+                    <p className="text-xs text-wine-dark/60 italic py-2">No brothers listed. Click "Add Brother" above to add one.</p>
+                  ) : (
+                    <div className="space-y-3 pt-1">
+                      {data.familyDetails.groomSide.brothers.map((brother, bIdx) => (
+                        <div key={bIdx} className="p-3 bg-blush-main/40 rounded-lg border border-pink-border/60 relative space-y-2">
+                          <div className="flex items-center justify-between">
+                            <span className="text-[11px] font-bold text-wine-dark flex items-center gap-1">
+                              <span className="w-4 h-4 rounded-full bg-burgundy text-white text-[9px] flex items-center justify-center font-bold">
+                                {bIdx + 1}
+                              </span>
+                              Brother {bIdx + 1}
+                            </span>
+                            <button
+                              type="button"
+                              onClick={() => removeBrother(bIdx)}
+                              className="text-red-600 hover:text-red-800 p-1 rounded hover:bg-red-50 transition-colors cursor-pointer"
+                              title="Delete Brother"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+
+                          <Input 
+                            label="Brother Name & Qualification" 
+                            value={brother.name} 
+                            onChange={(v) => handleBrotherChange(bIdx, 'name', v)} 
+                          />
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <Input 
+                              label="Wife's Name (Optional)" 
+                              value={brother.wife || ""} 
+                              onChange={(v) => handleBrotherChange(bIdx, 'wife', v)} 
+                            />
+                            <Input 
+                              label="Child Details (Optional)" 
+                              value={brother.child || ""} 
+                              onChange={(v) => handleBrotherChange(bIdx, 'child', v)} 
+                            />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
+
+              {/* BRIDE'S SIDE */}
+              <div className="bg-blush-light p-5 rounded-xl border border-pink-border/70 shadow-2xs space-y-5">
+                <div className="flex items-center justify-between pb-3 border-b border-pink-border/60">
+                  <div className="flex items-center gap-2">
+                    <User className="w-4 h-4 text-wine-dark" />
+                    <h3 className="font-bold text-base text-wine-dark">Bride's Parents & Family</h3>
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider bg-white px-2 py-0.5 rounded text-burgundy border border-pink-border/50">
+                    Bride Side
+                  </span>
+                </div>
+
+                {/* Parents' Names */}
+                <div className="space-y-3 bg-white/80 p-3.5 rounded-lg border border-pink-border/50">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-burgundy flex items-center gap-1.5">
+                    Parents' Names (Family Section)
+                  </h4>
+                  <Input 
+                    label="Father's Name" 
+                    value={data.familyDetails?.brideSide.father || ""} 
+                    onChange={(v) => handleChange("familyDetails.brideSide.father", v)} 
+                  />
+                  <Input 
+                    label="Mother's Name" 
+                    value={data.familyDetails?.brideSide.mother || ""} 
+                    onChange={(v) => handleChange("familyDetails.brideSide.mother", v)} 
+                  />
+                  <div className="pt-1">
+                    <Input 
+                      label="Hero Parents Subtitle (Under Bride Name on Hero)" 
+                      value={data.bride.parents} 
+                      onChange={(v) => handleChange("bride.parents", v)} 
+                    />
+                  </div>
+                </div>
+
+                {/* Bride's Sisters */}
+                <div className="space-y-3 bg-white/80 p-3.5 rounded-lg border border-pink-border/50">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-burgundy">
+                      Bride's Sisters ({data.familyDetails?.brideSide.sisters?.length || 0})
+                    </h4>
+                    <button
+                      type="button"
+                      onClick={addSister}
+                      className="flex items-center gap-1 px-2.5 py-1 bg-burgundy hover:bg-wine-dark text-white rounded text-xs font-bold transition-colors shadow-2xs cursor-pointer"
+                    >
+                      <Plus className="w-3.5 h-3.5" />
+                      Add Sister
+                    </button>
+                  </div>
+
+                  {(!data.familyDetails?.brideSide.sisters || data.familyDetails.brideSide.sisters.length === 0) ? (
+                    <p className="text-xs text-wine-dark/60 italic py-2">No sisters listed. Click "Add Sister" above to add one.</p>
+                  ) : (
+                    <div className="space-y-2 pt-1">
+                      {data.familyDetails.brideSide.sisters.map((sister, sIdx) => (
+                        <div key={sIdx} className="flex items-center gap-2 bg-blush-main/40 p-2.5 rounded-lg border border-pink-border/60">
+                          <span className="w-4 h-4 rounded-full bg-burgundy text-white text-[9px] flex items-center justify-center font-bold shrink-0">
+                            {sIdx + 1}
+                          </span>
+                          <div className="flex-1">
+                            <input 
+                              type="text"
+                              placeholder="Sister's Full Name"
+                              value={sister}
+                              onChange={(e) => handleSisterChange(sIdx, e.target.value)}
+                              className="w-full bg-white border border-pink-border rounded-md px-3 py-1.5 text-sm focus:outline-none focus:border-pink-accent focus:ring-1 focus:ring-pink-accent"
+                            />
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => removeSister(sIdx)}
+                            className="text-red-600 hover:text-red-800 p-1.5 rounded hover:bg-red-50 transition-colors shrink-0 cursor-pointer"
+                            title="Delete Sister"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+              </div>
+
             </div>
           </section>
 
